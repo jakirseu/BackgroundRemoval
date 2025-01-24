@@ -22,8 +22,14 @@ class ViewController: UIViewController {
         
         let image = UIImage(named: "child")
         inputImage.image = image
-        outputImage.image = BackgroundRemoval.init().removeBackground(image: image!)
-        segmentedImage.image = BackgroundRemoval.init().removeBackground(image: image!, maskOnly: true)
+     
+        do {
+            outputImage.image = try BackgroundRemoval.init().removeBackground(image: image!)
+            segmentedImage.image = try BackgroundRemoval.init().removeBackground(image: image!, maskOnly: true)
+        }catch{
+            print("Error while processing image.")
+        }
+        
     }
 }
 
